@@ -3,4 +3,4 @@
 #
 # So this gem is called 'vagrant-port' and thus vagrant tries
 # to require "vagrant-port"
-require "vagrant-port/port"
+require "vagrant-port/plugin"
