@@ -21,12 +21,17 @@ module VagrantPort
         return 1
       end
 
+      found = false
       with_target_vms(settings.machines) do |machine|
         machine.provider.driver.read_forwarded_ports.each do |active, name, host, guest|
-          puts host if argv.include?(guest.to_s)
+          if argv.include?(guest.to_s)
+            puts host 
+            found = true
+          end
         end
       end
 
+      return 1 if !found # fail if no forwarded ports found.
       return 0
     end
   end
