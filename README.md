@@ -16,6 +16,8 @@ You can use whatever forwarded ports you want, but I randomize them like this:
 ```ruby
 Vagrant::Config.run do |config|
   # Choose random ports (1024 to 31024)
+  # Keep in mind this random-host-port stuff is NOT necessary to use this
+  plugin, it simply is what I prefer :)
   config.vm.forward_port 1234, rand(30000) + 1024
   config.vm.forward_port 80, rand(30000) + 1024
   config.vm.forward_port 443, rand(30000) + 1024
