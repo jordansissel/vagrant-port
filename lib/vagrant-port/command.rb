@@ -13,7 +13,6 @@ module VagrantPort
           settings.machines << value
         end
       end
-      settings.machines = ["default"] if settings.machines.empty?
 
       argv = parse_options(options)
       if argv.nil? || argv.empty?
@@ -21,11 +20,12 @@ module VagrantPort
         return 1
       end
 
+      settings.machines = ["default"] if settings.machines.empty?
       found = false
       with_target_vms(settings.machines) do |machine|
         machine.provider.driver.read_forwarded_ports.each do |active, name, host, guest|
           if argv.include?(guest.to_s)
-            puts host 
+            puts host
             found = true
           end
         end
